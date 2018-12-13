@@ -58,5 +58,6 @@ def savePostsIndividually(directory,posts):
         contentLines=content.split('\n')
         contentLines=[line for line in contentLines if line]
         strippedContent='\n'.join(contentLines)
+        file.write('title: '+post['title']+'\n\n')
         file.write(strippedContent)
         file.close()
