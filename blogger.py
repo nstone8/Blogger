@@ -35,5 +35,11 @@ def savePosts(filename,posts):
         for key in post:
             #Use html parser to make text more readable
             soup = bs4.BeautifulSoup(str(post[key]), 'html.parser')
-            file.write(key+': '+soup.get_text()+'\n')
+            #Strip extra newlines
+            entryText=soup.get_text()
+            entryTextLines=entryText.split('\n')
+            entryTextLines=[line for line in entryTextLines if line]
+            strippedText='\n'.join(entryTextLines)
+            file.write(key+': '+strippedText+'\n')
         file.write('\n')
+    file.close()
